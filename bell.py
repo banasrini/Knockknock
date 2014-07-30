@@ -44,8 +44,10 @@ while True:
 	def callback(message, channel):
     	if(message == '1')
     		print("open door")
+    		#send a message to GPIO to open the door. If the door was already open, leave it open.
     	if(message == '0')
     		print("close door")
+    		#send message to close the door. If the door was already closed, leave it close
 
 
 	def error(message):
