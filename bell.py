@@ -1,6 +1,9 @@
 import time
 import picamera
-import RPi.GPIO as GPIO  # new
+import RPi.GPIO as GPIO 
+import base64
+from Pubnub import Pubnub
+
 #initialise a previous input variable to 0 (assume button not pressed last)
 prev_input = 0
 GPIO.setmode(GPIO.BCM)  # new
@@ -20,5 +23,20 @@ while True:
   prev_input = input
   #slight pause to debounce
   time.sleep(0.05)
-  
+  with open("/home/pi/Desktop/image.jpg", "rb") as imageFile:
+    str = base64.b64encode(imageFile.read())
+    
+    #use pubnub to send this over the channel 
+    publish_key = 'demo'
+	subscribe_key = 'demo'
+	channel = 'knock'
+	message = str
 
+	pubnub = Pubnub(publish_key=publish_key, subscribe_key=subscribe_key)
+ 
+	def callback(message):
+    	print('sent the message')
+
+	pubnub.publish(channel, message, callback=callback, error=callback)
+
+  
