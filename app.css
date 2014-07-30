@@ -1,0 +1,14 @@
+body{
+padding-left : 700px;
+padding-top: 400px;
+background-color:orange;
+
+}
+
+button{
+height:80px;
+width:150px;
+border-radius:25px;
+font-family: "Times New Roman", Times, serif;
+font-size:100%
+}
