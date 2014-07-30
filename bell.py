@@ -30,6 +30,7 @@ while True:
     publish_key = 'demo'
 	subscribe_key = 'demo'
 	channel = 'knock'
+	channel2 = 'pibellchannel'
 	message = str
 
 	pubnub = Pubnub(publish_key=publish_key, subscribe_key=subscribe_key)
@@ -38,5 +39,32 @@ while True:
     	print('sent the message')
 
 	pubnub.publish(channel, message, callback=callback, error=callback)
+	
+	#subscribing to the 
+	def callback(message, channel):
+    	if(message == '1')
+    		print("open door")
+    	if(message == '0')
+    		print("close door")
+
+
+	def error(message):
+    	print("ERROR : " + str(message))
+
+
+	def connect(message):
+    	print("CONNECTED")
+
+
+	def reconnect(message):
+    	print("RECONNECTED")
+
+
+	def disconnect(message):
+   	 print("DISCONNECTED")
+
+
+pubnub.subscribe(channel=channel2, callback=callback, error=callback,
+                 connect=connect, reconnect=reconnect, disconnect=disconnect)
 
   
